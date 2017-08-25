@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+html{
+	height:100%;
+	overflow-x:hidden;
+	overflow-y:auto;
+	}
+body{
+	height:100%;
+	overflow-x:hidden;
+	overflow-y:auto;
+	}
+.wrapper{
+	height:100%;
+	overflow-x:hidden;
+	overflow-y:auto;
+	}
+div.header{
+	position:relative;
+	height:10%;
+	width:100%;
+	}
+div.nav_horizontal{
+	position:absolute;
+	top:10px;
+	}
+div.container{
+	height:83%;
+	background:#FFF;/*white*/
+	overflow-x:hidden;
+	overflow-y:auto;
+	}
+div.footer{
+	height:7%;
+	width:100%;
+	box-sizing:border-box;
+	background:#000;
+	color:#FFF;
+	padding-top:7px;
+	text-align:center;
+	/*設定footer的絕對位置在底部*/
+	position:absolute;
+	bottom:0;
+	left:0;
+	}
+/*CSS for navigation bar*/
+/*initialize all component*/
+ul.navigation, #ul.navigation li, ul.navigation ul, a{
+	margin:0;
+	padding:0;
+	font-size:13px;
+	text-decoration:none;
+	}
+ul.navigation, ul.navigation li{
+	list-style:none;
+	}
+ul.navigation li{
+	position:relative;/*使接下來的選單有定位點參考*/
+	float:left;/*為讓選單能一個接著一個像左拓展*/
+	}
+/*選單li裡面的連結樣式*/
+ul.navigation li a{
+	display:block;/*讓字以外的範圍都有連結的效果*/
+	padding:12px 16px;
+	background:#888;/*gray*/
+	color:#FFF;/*white*/
+	}
+/*第一層li，以左邊灰線分隔*/
+ul.navigation > li > a{
+	border-bottom:1px solid #CCC;/*淺灰色*/
+	border-left:1px solid #CCC;
+	}
+ul.navigation > li > a{
+	color:#666;/*深灰色*/
+	background:#DDD;/*淺灰色*/
+	}
+/*第一層>第二層之後下拉部分之樣式*/
+ul.navigation li ul{
+	display:none;
+	float:left;
+	position:absolute;
+	left:0;
+	margin:0;
+	}
+/*當第一層被觸發時，顯示第二層*/
+ul.navigation li:hover > ul{
+	display:block;
+	}
+/*第二層或之後下拉部分的li樣式*/
+ul.navigation ul li{
+	border-bottom:1px solid #DDD;
+	}
+/*第二層或之後下拉部分li之最後一項不要底線*/
+ul.navigation ul li{
+	border-bottom:none;
+	}
+/*第二層或之後的li選單樣式*/
+ul.navigation ul a{
+	width:120px;
+	padding:10px 12px;
+	color:#666;/*gray*/
+	background:#EEE;/*淺灰*/
+	}
+ul.navigation ul a:hover{
+	background:#CCC;
+	}
+/*使第三層所有因觸發則顯示的選單為橫向發展*/
+ul.navigation ul li:hover > ul{
+	display:block;
+	position:absolute;
+	top:0;
+	left:100%;
+	}
+/*箭頭向下*/
+.arrow-bottom{
+	display:inline-block;
+	margin-left:5px;
+	border-top:4px solid #FFF;
+	border-right:4px solid transparent;
+	border-left:4px solid transparent;
+	width:1px;
+	height:1px;
+	}
+/*箭頭向右*/
+.arrow-right{
+	display:inline-block;
+	margin-left:12px;
+	border-top:3px solid transparent;
+	border-bottom:3px solid transparent;
+	border-left:3px solid #666;
+	width:1px;
+	height:1px;
+	}
+

@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+#dailyTable{
+	display:table;
+	margin:30px auto;
+	/*width:85%;*/
+	}
+tr{
+	display:table-row;
+	}
+td{
+	display:table-cell;
+	width:200px;
+	padding:6px;
+	vertical-align: middle;
+	border:3px solid #000;
+	text-align: center;
+	}
+tbody{
+	display:table-row-group;
+	}
+

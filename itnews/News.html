@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <title>News</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body class="container">
+        <div class="row">
+            <h1>IThome 新聞</h1>
+        </div>
+        <div class="row">
+            <table id="table" class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>標題</th>
+                        <th>日期</th>
+                        <th>作者</th>
+                        <th>讚數</th>
+                        <th>照片</th>
+                        <th>內文</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <ul class="pagination"></ul>
+        </div>
+    </body>
+<script>
+    var page = 1;
+    loadNews();
+    loadPagination();
+
+    $(".list").click(function()
+    {
+        page = $(this).text();
+        $(".list").removeClass('active');
+        $(this).addClass('active');
+        loadNews();
+    });
+
+    function loadNews()
+    {
+        $.ajax({
+            url     : "getNews.php",
+            type    : "POST",
+            async   : false,
+            data    : { page : page },
+            success : function(response)
+            {
+                var json = $.parseJSON(response);
+                $('tbody tr').remove();
+
+                for(var i=0; i<=json.length; i++)
+                {
+                    $('tbody').append(
+                    '<tr>' +
+                    '<td>'+json[i].id+'</td>'+
+                    '<td>'+json[i].title+'</td>'+
+                    '<td>'+json[i].created+'</td>'+
+                    '<td>'+json[i].author+'</td>'+
+                    '<td>'+json[i].like_total+'</td>'+
+                    '<td><img src="'+json[i].pic+'" width="300" height="200" ></td>'+
+                    '<td>'+json[i].article+'</td>'+
+                    '</tr>'
+                    );
+                }
+            }
+        });
+    }
+
+    function loadPagination()
+    {
+        var pageList = ''; // 分頁列表
+        var smallest = 1;
+        var biggest  = 1;
+
+        $.ajax({
+            url     : "getPagination.php",
+            async   : false,
+            dataType: "text",
+        success : function(response)
+        {
+            biggest = response;
+        }
+        });
+
+        // 開始串分頁
+        pageList += "<li><a> << </a></li>";
+        for (var p=1;p<=biggest;p++)
+        {
+            if (p>=smallest && p<=biggest)
+            {
+            pageList += "<li class='list'><a>"+ p +"</a></li>";
+            }
+        }
+
+        pageList += "<li><a> >> </a></li>";
+
+        $("ul").html(pageList);
+        $('.list:first').addClass('active');
+    }
+</script>
+</html>

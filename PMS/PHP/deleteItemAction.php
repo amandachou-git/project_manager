@@ -9,6 +9,7 @@
 	  
   mysql_free_result($delete_item_result);	  
   mysql_close($conn);
+  // test
   
   //回到前一頁
   header("Location: ".$_SERVER['HTTP_REFERER']);
